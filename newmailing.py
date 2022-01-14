@@ -9,7 +9,8 @@ def send_email():
     from_adr = "jesshua722@gmail.com"
     server = SMTP('smtp.gmail.com', 587)
     subject= "Control your light"
-    
+   
+ # Create message container
     msg = MIMEMultipart()
     msg["From"] = from_adr
     msg["To"] = recipients[0]
@@ -19,6 +20,7 @@ def send_email():
 
     server.ehlo()
     server.starttls()
+    #stmplib docs recommend calling ehlo() before and after starttls()
     server.ehlo()
     server.login("jesshua722@gmail.com", "KIKI&&KICHI4ever")
     server.sendmail(from_adr, recipients, msg.as_string())
