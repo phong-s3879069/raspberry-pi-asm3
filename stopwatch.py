@@ -1,8 +1,8 @@
 import time
 import RPi.GPIO as GPIO
 
+# Declare the second variable and initiialize it
 second = 0
-minute = 0
 
 # PIN connected to IN1
 relay_pin = 23
@@ -20,11 +20,12 @@ def stop():
     while True:
         print('\t\t\t\t %d : %d '%(minute,second))
         time.sleep(1)
-        second+=1
-        if (second == 10):
-            second = 0
-            minute+=1
-            GPIO.output(relay_pin, GPIO.HIGH)
+        second += 1
+        # Set timer so that when it reaches to the given second, the light bulb will turn off
+        # All time will be converted into second
+        if (second == 60):
+            second = 0 # After second reaches the given timer, second will be reset
+            GPIO.output(relay_pin, GPIO.LOW)
             break
     
         
